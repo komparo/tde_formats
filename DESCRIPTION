@@ -11,3 +11,7 @@ Description: Format validation for trajectory differential expression benchmarki
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
+Imports:
+  certigo
+Remotes:
+  komparo/certigo
