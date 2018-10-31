@@ -30,7 +30,7 @@ tde_overall <- add_validators(
     validate(all(!is.na(tde_overall)), "All values should not be NA")
     
     # check feature ids
-    all_feature_ids <- readr::read_lines(design$gene_expression$path, n_max = 1) %>% str_split(",") %>% dplyr::first() %>% tail(-1)
+    all_feature_ids <- as.matrix(read.table(design$gene_expression$path, header = TRUE, nrows = 1, row.names = 1, sep = ",")) %>% colnames()
     validate(all(tde_overall$feature_id %in% all_feature_ids), "All feature_id are present in the original dataset")
   }
 )
