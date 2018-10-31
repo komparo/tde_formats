@@ -17,17 +17,33 @@ gene_expression <- add_validators(
 tde_overall <- add_validators(
   derived_file,
   function(design) {
-    col_types <- cols(
-      feature_id = col_character(), 
-      tde_overall = col_logical()
-    )
-    
     # check tde overall
     tde_overall <- read_csv(
-      self$path, 
-      col_types = col_types
+      self$path
     )
-    validate(all(!is.na(tde_overall)), "All values should not be NA")
+    
+    validate(all(colnames(tde_overall) %in% c("feature_id", "significant", "p_value", "effect_size", "rank")))
+    
+    validate(any(c("significant", "p_value", "effect_size", "rank") %in% colnames(tde_overall)))
+    
+    if ("significant" %in% colnames(tde_overall)) {
+      validate(is.logical(tde_overall$significant))
+    }
+    if ("p_value" %in% colnames(tde_overall)) {
+      validate(is.numeric(tde_overall$p_value))
+      validate(all(tde_overall$p_value >= 0))
+      validate(all(tde_overall$p_value <= 1))
+    }
+    if ("effect_size" %in% colnames(tde_overall)) {
+      validate(is.numeric(tde_overall$effect_size))
+    }
+    if ("rank" %in% colnames(tde_overall)) {
+      validate(is.integer(tde_overall$rank))
+      validate(min(tde_overall$rank) >= 1)
+      validate(max(tde_overall$rank) <= nrow(tde_overall))
+    }
+    
+    validate(all(!is.na(tde_overall)))
     
     # check feature ids
     if ("dataset" %in% names(design)) {

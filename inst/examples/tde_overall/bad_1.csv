@@ -1,4 +1,4 @@
-feature_id,tde_overall
+feature_id,significant
 G1,TRUE
 G2,TRUE
-G3,blabla
+G3,not_logical

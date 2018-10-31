@@ -10,8 +10,8 @@ dir_copy(system.file("examples", package = "tdeformats"), tempdir)
 setwd(paste0(tempdir, "/examples"))
 
 # create extra testthat functions
-expect_valid <- function(exprs) {testthat::expect_true(exprs, info = exprs)}
-expect_invalid <- function(exprs) {testthat::expect_true(is.character(exprs), info = exprs)}
+expect_valid <- function(exprs, file = "") {testthat::expect_true(exprs, info = exprs)}
+expect_invalid <- function(exprs, file = "") {testthat::expect_true(is.character(exprs), info = exprs)}
 
 # create a fake history for each file, so that it doesn't get deleted
 fs::dir_ls(recursive = TRUE, type = "file") %>% 
