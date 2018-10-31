@@ -25,8 +25,7 @@ expect_invalid(file$validate(design = design))
 file <- tde_overall(path("tde_overall/good_1.csv"))
 expect_valid(file$validate(design = design))
 
-file <- tde_overall(path("tde_overall/bad_1.csv"))
-expect_invalid(file$validate(design = design))
-
-file <- tde_overall(path("tde_overall/bad_2.csv"))
-expect_invalid(file$validate(design = design))
+for (file in paste0("bad_", 1:6, ".csv")) {
+  file <- tde_overall(path("tde_overall/bad_1.csv"))
+  expect_invalid(file$validate(design = design))
+}

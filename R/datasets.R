@@ -19,10 +19,15 @@ tde_overall <- add_validators(
   function(design) {
     # check tde overall
     tde_overall <- read_csv(
-      self$path
+      self$path,
+      col_types = cols()
     )
     
-    validate(all(colnames(tde_overall) %in% c("feature_id", "significant", "p_value", "effect_size", "rank")))
+    allowed_colnames <- c("feature_id", "significant", "p_value", "effect_size", "rank")
+    validate(
+      all(colnames(tde_overall) %in% allowed_colnames), 
+      hint = setdiff(colnames(tde_overall), allowed_colnames)
+    )
     
     validate(any(c("significant", "p_value", "effect_size", "rank") %in% colnames(tde_overall)))
     
