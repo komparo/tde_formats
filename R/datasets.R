@@ -4,8 +4,9 @@
 gene_expression <- add_validators(
   derived_file,
   function(design) {
-    expression <- read.table(self$path, nrows = 2, header = TRUE, row.names = 1)
+    expression <- as.matrix(read.table(self$path, header = TRUE, nrows = 1, row.names = 1, sep = ","))
     validate(all(!is.na(expression)), "All values should not be NA")
+    validate(is.numeric(expression), "All values should be numeric")
   }
 )
 
@@ -16,9 +17,19 @@ gene_expression <- add_validators(
 tde_overall <- add_validators(
   derived_file,
   function(design) {
-    tde_overall <- read_csv(h, nrows = 2, header = TRUE, row.names = 1)
-    validate(all(!is.na(expression)), "All values should not be NA")
+    col_types <- cols(
+      feature_id = col_character(), 
+      tde_overall = col_logical()
+    )
+    
+    tde_overall <- read_csv(
+      self$path, 
+      col_types = col_types
+    )
+    validate(all(!is.na(tde_overall)), "All values should not be NA")
+    
+    all_feature_ids <- readr::read_lines(design$gene_expression$path, n_max = 1) %>% str_split(",") %>% dplyr::first() %>% tail(-1)
+    
+    validate(all(tde_overall$feature_id %in% all_feature_ids), "All feature_id are present in the original dataset")
   }
 )
-
-
