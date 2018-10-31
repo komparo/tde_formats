@@ -16,3 +16,5 @@ Imports:
 Remotes:
   komparo/certigo
 RoxygenNote: 6.1.0
+Suggests: 
+    testthat
