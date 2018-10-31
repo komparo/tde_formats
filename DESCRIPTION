@@ -13,8 +13,8 @@ Encoding: UTF-8
 LazyData: true
 Imports:
   certigo
+Suggests: 
+    testthat
 Remotes:
   komparo/certigo
 RoxygenNote: 6.1.0
-Suggests: 
-    testthat
