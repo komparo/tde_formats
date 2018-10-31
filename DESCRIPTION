@@ -1,0 +1,13 @@
+Package: tdeformats
+Title: Format validation for trajectory differential expression benchmarking
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Wouter",
+           family = "Saelens",
+           role = c("aut", "cre"),
+           email = "wouter.saelens@gmail.com")
+Description: Format validation for trajectory differential expression benchmarking.
+  Contains descriptions of formats used in trajectory differential expression.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
