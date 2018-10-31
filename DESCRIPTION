@@ -16,5 +16,5 @@ Imports:
 Suggests: 
     testthat
 Remotes:
-  komparo/certigo
+  komparo/certigo@devel
 RoxygenNote: 6.1.0
