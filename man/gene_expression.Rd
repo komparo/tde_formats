@@ -6,6 +6,9 @@
 \usage{
 gene_expression(...)
 }
+\arguments{
+\item{...}{...}
+}
 \description{
 Expression matrix
 }
