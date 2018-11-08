@@ -1,4 +1,4 @@
 feature_id,significant,effect_size,p_value,rank
 G1,TRUE,1,0.05,2
-G2,TRUE,0.2,0.25,3
+G2,FALSE,0.2,0.25,3
 G3,TRUE,2.5,0.001,1
